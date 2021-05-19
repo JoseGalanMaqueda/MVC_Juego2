@@ -6,7 +6,7 @@ public class ModeloTablero
 
 	int filas = 6;
 	int columnas = 7;
-	public int[][] tablero = new int[filas][columnas];;
+	public int[][] tablero = new int[filas][columnas];
 	int iElegido = 0;
 	int fila = 0;
 	int jugador = 0;
@@ -14,9 +14,9 @@ public class ModeloTablero
 	
 	public void mostrarPosiciones() 
 	{
-		for (int i = 0; i < 6; i++)	
+		for (int i = 0; i < columnas; i++)	
 		{	
-			for (int j = 0; j < 7; j++)
+			for (int j = 0; j < filas; j++)
 			{
 				System.out.print(tablero[i][j]+"\t");
 			}
@@ -50,7 +50,7 @@ public class ModeloTablero
 
 	}
 	
-	public void llenarTablero(int posicion, int jugador) 
+	public void llenarTablero(int posicion, int fila, int jugador) 
 	{
 		tablero[iElegido][fila] = jugador;
 	}

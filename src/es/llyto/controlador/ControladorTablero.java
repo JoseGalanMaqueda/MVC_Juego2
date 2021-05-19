@@ -83,30 +83,37 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 			int columna = 0;
 			if (vista.turno == 1) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 1);
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
+				vista.tableroDatos = modelo.tablero;
+				vista.mostrarPosiciones();
 				vista.turno = 2;
+				vista.repaint();
 				
 			}
 			else if (vista.turno == 2) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 2);
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
+				vista.tableroDatos = modelo.tablero;
+				vista.mostrarPosiciones();
 				vista.turno = 1;
+				vista.repaint();
 			}
-			vista.repaint();
 		}
 		else if ((e.getX()>= 245) && (e.getX()<= 279) && (e.getY() >= 140) && (e.getY()<=343)) 
 		{
 			int columna = 1;
 			if (vista.turno == 1) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 1);
-				modelo.mostrarPosiciones();
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
+				vista.tableroDatos = modelo.tablero;
+				vista.mostrarPosiciones();
 				vista.turno = 2;
 			}
 			else if (vista.turno == 2) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 2);
-				modelo.mostrarPosiciones();
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
+				vista.tableroDatos = modelo.tablero;
+				vista.mostrarPosiciones();
 				vista.turno = 1;
 			}
 			vista.repaint();
@@ -116,14 +123,16 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 			int columna = 2;
 			if (vista.turno == 1) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 1);
-				modelo.mostrarPosiciones();
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
+				vista.tableroDatos = modelo.tablero;
+				vista.mostrarPosiciones();
 				vista.turno = 2;
 			}
 			else if (vista.turno == 2) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 2);
-				modelo.mostrarPosiciones();
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
+				vista.tableroDatos = modelo.tablero;
+				vista.mostrarPosiciones();
 				vista.turno = 1;
 			}
 			vista.repaint();
@@ -133,15 +142,16 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 			int columna = 3;
 			if (vista.turno == 1) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 1);
-				modelo.mostrarPosiciones();
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
+				vista.tableroDatos = modelo.tablero;
+				vista.mostrarPosiciones();
 				vista.turno = 2;
 			}
 			else if (vista.turno == 2) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 2);
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
 				vista.tableroDatos = modelo.tablero;
-				modelo.mostrarPosiciones();
+				vista.mostrarPosiciones();
 				vista.turno = 1;
 			}
 			vista.repaint();
@@ -151,14 +161,16 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 			int columna = 4;
 			if (vista.turno == 1) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 1);
-				modelo.mostrarPosiciones();
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
+				vista.tableroDatos = modelo.tablero;
+				vista.mostrarPosiciones();
 				vista.turno = 2;
 			}
 			else if (vista.turno == 2) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 2);
-				modelo.mostrarPosiciones();
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
+				vista.tableroDatos = modelo.tablero;
+				vista.mostrarPosiciones();
 				vista.turno = 1;
 			}
 			vista.repaint();
@@ -168,14 +180,16 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 			int columna = 5;
 			if (vista.turno == 1) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 1);
-				modelo.mostrarPosiciones();
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
+				vista.tableroDatos = modelo.tablero;
+				vista.mostrarPosiciones();
 				vista.turno = 2;
 			}
 			else if (vista.turno == 2) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 2);
-				modelo.mostrarPosiciones();
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
+				vista.tableroDatos = modelo.tablero;
+				vista.mostrarPosiciones();
 				vista.turno = 1;
 			}
 			vista.repaint();
@@ -185,14 +199,16 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 			int columna = 6;
 			if (vista.turno == 1) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 1);
-				modelo.mostrarPosiciones();
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
+				vista.tableroDatos = modelo.tablero;
+				vista.mostrarPosiciones();
 				vista.turno = 2;
 			}
 			else if (vista.turno == 2) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna), 2);
-				modelo.mostrarPosiciones();
+				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
+				vista.tableroDatos = modelo.tablero;
+				vista.mostrarPosiciones();
 				vista.turno = 1;
 			}
 			vista.repaint();
