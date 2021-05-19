@@ -27,6 +27,7 @@ public class Tablero extends Frame
 	int y = 140;
 	int incrementoX = 70;
 	int incrementoY = 36;
+	int n_recuadrosAzules = 7*6;
 	int filas = 6;
 	int columnas = 7;
 	public int[][] tableroDatos = new int[filas][columnas];
@@ -101,6 +102,7 @@ public class Tablero extends Frame
 				
 			}
 		}
+		
 		
 		/*
 		for (int i = 0; i < 7; i++)	
