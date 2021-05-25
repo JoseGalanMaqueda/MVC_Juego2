@@ -75,7 +75,6 @@ public class ModeloTablero
 		return aGanado;
 	}
 
-
 	public boolean comprobacionHorizontalIzquierda(int columna, int posicion, int turno) 
 	{
 		boolean aGanado = true;
@@ -139,7 +138,6 @@ public class ModeloTablero
 
 		return aGanado;
 	}
-
 	
 	public boolean comprobacionDiagonalIzquierdaArriba(int columna, int posicion, int turno) 
 	{
@@ -148,6 +146,48 @@ public class ModeloTablero
 		{
 			if (aGanado) {
 				if (tablero[posicion-i][columna-i] == turno) 
+				{
+					aGanado = true;
+				}
+				else 
+				{
+					aGanado = false;
+				}
+			}
+			
+		}
+
+		return aGanado;
+	}
+	
+	public boolean comprobacionDiagonalDerechaAbajo(int columna, int posicion, int turno) 
+	{
+		boolean aGanado = true;
+		for (int i = 0; i<4 ; i++)  
+		{
+			if (aGanado) {
+				if (tablero[posicion+i][columna+i] == turno) 
+				{
+					aGanado = true;
+				}
+				else 
+				{
+					aGanado = false;
+				}
+			}
+			
+		}
+
+		return aGanado;
+	}
+	
+	public boolean comprobacionDiagonalIzquierdaAbajo(int columna, int posicion, int turno) 
+	{
+		boolean aGanado = true;
+		for (int i = 0; i<4 ; i++)  
+		{
+			if (aGanado) {
+				if (tablero[posicion+i][columna-i] == turno) 
 				{
 					aGanado = true;
 				}

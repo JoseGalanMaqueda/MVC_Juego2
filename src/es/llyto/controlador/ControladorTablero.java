@@ -14,15 +14,19 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 	Tablero vista;
 	ModeloTablero modelo;
 	boolean ganador = false;
+	int movimientosJugador1 = 0;
+	int movimientosJugador2 = 0;
 
 	public ControladorTablero(Tablero vista, ModeloTablero modelo) 
 	{
 		this.vista = vista;
 		this.modelo = modelo;
-		
+
 		this.vista.addWindowListener(this);
 		this.vista.addMouseListener(this);
 		this.vista.addMouseMotionListener(this);
+		
+		this.vista.dlgGanador.addWindowListener(this);
 	}
 
 
@@ -35,6 +39,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 	{
 		if (vista.isActive()) 
 		{
+			vista.setVisible(false);
+		}
+		else if (vista.dlgGanador.isActive()) 
+		{
+			vista.dlgGanador.setVisible(false);
 			vista.setVisible(false);
 		}
 	}
@@ -83,23 +92,36 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		{
 			int columna = 0;
 			int posicion = modelo.buscarPosicion(columna);
-			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
+
 			if (vista.turno == 1) 
 			{				
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
-				vista.tableroDatos = modelo.tablero;	
-				
+				vista.tableroDatos = modelo.tablero;
+
+
 				// =================== COMPROBACIONES =======================
-				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				boolean comprobacionHorizontalDerecha =  modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno);
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalDerechaAbajo = false;
+				boolean comprobacionDiagonalDerechaArriba = false;
+				
 				if (posicion<3) 
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalDerechaAbajo = modelo.comprobacionDiagonalDerechaAbajo(columna, posicion, vista.turno);
 				}
 				else 
 				{
-					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+					comprobacionDiagonalDerechaArriba = modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno);
 				}
-				
+				movimientosJugador1++;
+
+				if ((comprobacionHorizontalDerecha == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
+				}
+
 				vista.turno = 2;
 
 			}
@@ -107,19 +129,31 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 			{				
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
 				vista.tableroDatos = modelo.tablero;	
-				
+
 				// =================== COMPROBACIONES =======================
-				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				boolean comprobacionHorizontalDerecha =  modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno);
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalDerechaAbajo = false;
+				boolean comprobacionDiagonalDerechaArriba = false;
+
 				if (posicion<3) 
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalDerechaAbajo = modelo.comprobacionDiagonalDerechaAbajo(columna, posicion, vista.turno);
 				}
 				else 
 				{
-					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+					comprobacionDiagonalDerechaArriba = modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno);
 				}
-				
-				
+				movimientosJugador2++;
+
+				if ((comprobacionHorizontalDerecha == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
+				}
+
+
 				vista.turno = 1;	
 			}
 			vista.repaint();
@@ -128,24 +162,34 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		{
 			int columna = 1;
 			int posicion = modelo.buscarPosicion(columna);
-			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
 			if (vista.turno == 1) 
 			{
-				
+
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
 				vista.tableroDatos = modelo.tablero;
-				
+
 				// =================== COMPROBACIONES =======================
-				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				boolean comprobacionHorizontalDerecha =  modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno);
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalDerechaAbajo = false;
+				boolean comprobacionDiagonalDerechaArriba = false;
 				if (posicion<3) 
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalDerechaAbajo = modelo.comprobacionDiagonalDerechaAbajo(columna, posicion, vista.turno);
 				}
 				else 
 				{
-					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+					comprobacionDiagonalDerechaArriba = modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno);
 				}
-				
+				movimientosJugador1++;
+
+				if ((comprobacionHorizontalDerecha == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
+				}
+
 
 				vista.turno = 2;
 			}
@@ -153,18 +197,31 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
 				vista.tableroDatos = modelo.tablero;
-				
+
 				// =================== COMPROBACIONES =======================
-				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				boolean comprobacionHorizontalDerecha =  modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno);
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalDerechaAbajo = false;
+				boolean comprobacionDiagonalDerechaArriba = false;
+
 				if (posicion<3) 
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
-				}else 
-				{
-					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalDerechaAbajo = modelo.comprobacionDiagonalDerechaAbajo(columna, posicion, vista.turno);
 				}
-				
-				
+				else 
+				{
+					comprobacionDiagonalDerechaArriba = modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno);
+				}
+				movimientosJugador2++;
+
+				if ((comprobacionHorizontalDerecha == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
+				}
+
+
 				vista.turno = 1;
 
 			}
@@ -174,23 +231,33 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		{
 			int columna = 2;
 			int posicion = modelo.buscarPosicion(columna);
-			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
 			if (vista.turno == 1) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
 				vista.tableroDatos = modelo.tablero;
-				
+
 				// =================== COMPROBACIONES =======================
-				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				boolean comprobacionHorizontalDerecha =  modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno);
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalDerechaAbajo = false;
+				boolean comprobacionDiagonalDerechaArriba = false;
 				if (posicion<3) 
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalDerechaAbajo = modelo.comprobacionDiagonalDerechaAbajo(columna, posicion, vista.turno);
 				}
 				else 
 				{
-					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+					comprobacionDiagonalDerechaArriba = modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno);
 				}
-				
+				movimientosJugador1++;
+
+				if ((comprobacionHorizontalDerecha == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
+				}
+
 
 				vista.turno = 2;
 			}
@@ -198,19 +265,31 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
 				vista.tableroDatos = modelo.tablero;
-				
+
 				// =================== COMPROBACIONES =======================
-				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				boolean comprobacionHorizontalDerecha =  modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno);
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalDerechaAbajo = false;
+				boolean comprobacionDiagonalDerechaArriba = false;
+
 				if (posicion<3) 
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalDerechaAbajo = modelo.comprobacionDiagonalDerechaAbajo(columna, posicion, vista.turno);
 				}
 				else 
 				{
-					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+					comprobacionDiagonalDerechaArriba = modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno);
 				}
-				
-				
+				movimientosJugador2++;
+
+				if ((comprobacionHorizontalDerecha == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
+				}
+
+
 				vista.turno = 1;
 			}
 			vista.repaint();
@@ -219,47 +298,83 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		{
 			int columna = 3;
 			int posicion = modelo.buscarPosicion(columna);
-			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
 			if (vista.turno == 1) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
 				vista.tableroDatos = modelo.tablero;
-				
+
 				// =================== COMPROBACIONES =======================
-				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
-				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
+
+				boolean comprobacionHorizontalDerecha =  false;
+				boolean comprobacionHorizontalIzquierda = false;
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalDerechaArriba = false;
+				boolean comprobacionDiagonalIzquierdaArriba = false;
+				boolean comprobacionDiagonalDerechaAbajo = false;
+				boolean comprobacionDiagonalIzquierdaAbajo = false;
+
+				comprobacionHorizontalDerecha = modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno);
+				comprobacionHorizontalIzquierda = modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno);
 				if (posicion<3) 
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalDerechaAbajo = modelo.comprobacionDiagonalDerechaAbajo(columna, posicion, vista.turno);
+					comprobacionDiagonalIzquierdaAbajo = modelo.comprobacionDiagonalIzquierdaAbajo(columna, posicion, vista.turno);
 				}
 				else 
 				{
-					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
-					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+					comprobacionDiagonalDerechaArriba = modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno);
+					comprobacionDiagonalIzquierdaArriba =  modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno);
+				}
+				movimientosJugador1++;
+
+				if ((comprobacionHorizontalDerecha == true) || (comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) 
+						|| (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
 				}
 
-				
+
 				vista.turno = 2;
 			}
 			else if (vista.turno == 2) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
 				vista.tableroDatos = modelo.tablero;
-				
+
 				// =================== COMPROBACIONES =======================
-				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
-				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
+
+				boolean comprobacionHorizontalDerecha =  false;
+				boolean comprobacionHorizontalIzquierda = false;
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalDerechaArriba = false;
+				boolean comprobacionDiagonalIzquierdaArriba = false;
+				boolean comprobacionDiagonalDerechaAbajo = false;
+				boolean comprobacionDiagonalIzquierdaAbajo = false;
+
+				comprobacionHorizontalDerecha = modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno);
+				comprobacionHorizontalIzquierda = modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno);
 				if (posicion<3) 
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalDerechaAbajo = modelo.comprobacionDiagonalDerechaAbajo(columna, posicion, vista.turno);
+					comprobacionDiagonalIzquierdaAbajo = modelo.comprobacionDiagonalIzquierdaAbajo(columna, posicion, vista.turno);
 				}
 				else 
 				{
-					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
-					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+					comprobacionDiagonalDerechaArriba = modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno);
+					comprobacionDiagonalIzquierdaArriba =  modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno);
+				}
+				movimientosJugador2++;
+
+				if ((comprobacionHorizontalDerecha == true) || (comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) 
+						|| (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
 				}
 
-				
 				vista.turno = 1;
 			}
 			vista.repaint();
@@ -268,21 +383,34 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		{
 			int columna = 4;
 			int posicion = modelo.buscarPosicion(columna);
-			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
 			if (vista.turno == 1) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
 				vista.tableroDatos = modelo.tablero;
-				
+
 				// =================== COMPROBACIONES =======================
-				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
+				boolean comprobacionHorizontalIzquierda = false;
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalIzquierdaArriba = false;
+				boolean comprobacionDiagonalIzquierdaAbajo = false;
+				
+				
+				comprobacionHorizontalIzquierda = modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno);
 				if (posicion<3)
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalIzquierdaAbajo = modelo.comprobacionDiagonalIzquierdaAbajo(columna, posicion, vista.turno);
 				}
 				else 
 				{
-					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+					comprobacionDiagonalIzquierdaArriba = modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno);
+				}
+				movimientosJugador1++;
+				
+				if ((comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
 				}
 
 
@@ -292,16 +420,30 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
 				vista.tableroDatos = modelo.tablero;
-				
+
 				// =================== COMPROBACIONES =======================
-				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
-				if (posicion<3) 
+				boolean comprobacionHorizontalIzquierda = false;
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalIzquierdaArriba = false;
+				boolean comprobacionDiagonalIzquierdaAbajo = false;
+				
+				
+				comprobacionHorizontalIzquierda = modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno);
+				if (posicion<3)
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalIzquierdaAbajo = modelo.comprobacionDiagonalIzquierdaAbajo(columna, posicion, vista.turno);
 				}
 				else 
 				{
-					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+					comprobacionDiagonalIzquierdaArriba = modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno);
+				}
+				movimientosJugador2++;
+				
+				if ((comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
 				}
 
 
@@ -313,21 +455,34 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		{
 			int columna = 5;
 			int posicion = modelo.buscarPosicion(columna);
-			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
 			if (vista.turno == 1) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
 				vista.tableroDatos = modelo.tablero;
+
+				/// =================== COMPROBACIONES =======================
+				boolean comprobacionHorizontalIzquierda = false;
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalIzquierdaArriba = false;
+				boolean comprobacionDiagonalIzquierdaAbajo = false;
 				
-				// =================== COMPROBACIONES =======================
-				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
+				
+				comprobacionHorizontalIzquierda = modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno);
 				if (posicion<3)
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalIzquierdaAbajo = modelo.comprobacionDiagonalIzquierdaAbajo(columna, posicion, vista.turno);
 				}
 				else 
 				{
-					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+					comprobacionDiagonalIzquierdaArriba = modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno);
+				}
+				movimientosJugador1++;
+				
+				if ((comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
 				}
 
 
@@ -337,16 +492,30 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
 				vista.tableroDatos = modelo.tablero;
-				
+
 				// =================== COMPROBACIONES =======================
-				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
+				boolean comprobacionHorizontalIzquierda = false;
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalIzquierdaArriba = false;
+				boolean comprobacionDiagonalIzquierdaAbajo = false;
+				
+				
+				comprobacionHorizontalIzquierda = modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno);
 				if (posicion<3)
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalIzquierdaAbajo = modelo.comprobacionDiagonalIzquierdaAbajo(columna, posicion, vista.turno);
 				}
-				else
+				else 
 				{
-					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+					comprobacionDiagonalIzquierdaArriba = modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno);
+				}
+				movimientosJugador2++;
+				
+				if ((comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
 				}
 
 
@@ -358,21 +527,34 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		{
 			int columna = 6;
 			int posicion = modelo.buscarPosicion(columna);
-			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
 			if (vista.turno == 1) 
 			{
 				modelo.llenarTablero(posicion,columna, 1);
 				vista.tableroDatos = modelo.tablero;
-				
+
 				// =================== COMPROBACIONES =======================
-				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
-				if (posicion<3) 
+				boolean comprobacionHorizontalIzquierda = false;
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalIzquierdaArriba = false;
+				boolean comprobacionDiagonalIzquierdaAbajo = false;
+				
+				
+				comprobacionHorizontalIzquierda = modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno);
+				if (posicion<3)
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalIzquierdaAbajo = modelo.comprobacionDiagonalIzquierdaAbajo(columna, posicion, vista.turno);
 				}
 				else 
 				{
-					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+					comprobacionDiagonalIzquierdaArriba = modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno);
+				}
+				movimientosJugador1++;
+				
+				if ((comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
 				}
 
 
@@ -382,16 +564,30 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 			{
 				modelo.llenarTablero(posicion,columna, 2);
 				vista.tableroDatos = modelo.tablero;
-				
+
 				// =================== COMPROBACIONES =======================
-				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
-				if (posicion<3) 
+				boolean comprobacionHorizontalIzquierda = false;
+				boolean comprobacionAbajoVertical = false;
+				boolean comprobacionDiagonalIzquierdaArriba = false;
+				boolean comprobacionDiagonalIzquierdaAbajo = false;
+				
+				
+				comprobacionHorizontalIzquierda = modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno);
+				if (posicion<3)
 				{
-					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+					comprobacionAbajoVertical = modelo.comprobacionAbajoVertical(columna, posicion,vista.turno);
+					comprobacionDiagonalIzquierdaAbajo = modelo.comprobacionDiagonalIzquierdaAbajo(columna, posicion, vista.turno);
 				}
 				else 
 				{
-					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+					comprobacionDiagonalIzquierdaArriba = modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno);
+				}
+				movimientosJugador2++;
+				
+				if ((comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
+				{
+					vista.repaint();
+					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
 				}
 
 				vista.turno = 1;

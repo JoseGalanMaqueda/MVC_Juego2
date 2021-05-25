@@ -1,10 +1,13 @@
 package es.llyto.vista;
 
 import java.awt.Color;
+import java.awt.Dialog;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Label;
 import java.awt.Toolkit;
 
 public class Tablero extends Frame
@@ -17,8 +20,8 @@ public class Tablero extends Frame
 	Image fondo;
 	Image bntSalir;
 	public Toolkit herramienta;
-	String jugador1 = "";
-	String jugador2 = "";
+	public String jugador1 = "";
+	public String jugador2 = "";
 	Color tablero = new Color(0,0,200);
 	Color tablero2 = new Color(0,0,160);
 	public String hora = "12:00";
@@ -31,6 +34,9 @@ public class Tablero extends Frame
 	int filas = 6;
 	int columnas = 7;
 	public int[][] tableroDatos = new int[filas][columnas];
+	
+	public Dialog dlgGanador = new Dialog(this, "Ganador", true );
+	public Label lblMensaje = new Label();
 
 
 	public Tablero(String jugador1,String jugador2) 
@@ -131,7 +137,18 @@ public class Tablero extends Frame
 		bntSalir = herramienta.getImage("img//Tablero//btnSalir2.png");
 		repaint();
 	}
-
+	
+	public void creacionDialogoGanador(String ganador, int movimientos) 
+	{
+		dlgGanador.setSize(300, 200);
+		dlgGanador.setLayout(new FlowLayout());
+		lblMensaje.setText("El Ganador es "+ganador+", ha tenido "+movimientos+" movimientos");
+		dlgGanador.add(lblMensaje);
+		dlgGanador.setLocationRelativeTo(null);
+		dlgGanador.setResizable(false);
+		dlgGanador.setVisible(true);
+	}
+	
 
 
 }
