@@ -13,6 +13,7 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 {
 	Tablero vista;
 	ModeloTablero modelo;
+	boolean ganador = false;
 
 	public ControladorTablero(Tablero vista, ModeloTablero modelo) 
 	{
@@ -81,52 +82,135 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		else if ((e.getX()>= 173) && (e.getX()<= 210) && (e.getY() >= 140) && (e.getY()<=343)) 
 		{
 			int columna = 0;
+			int posicion = modelo.buscarPosicion(columna);
+			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
 			if (vista.turno == 1) 
-			{
+			{				
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
-				vista.tableroDatos = modelo.tablero;
+				vista.tableroDatos = modelo.tablero;	
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				if (posicion<3) 
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}
+				else 
+				{
+					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+				}
+				
 				vista.turno = 2;
-				
-				
+
 			}
 			else if (vista.turno == 2) 
-			{
+			{				
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
-				vista.tableroDatos = modelo.tablero;
-				vista.turno = 1;
+				vista.tableroDatos = modelo.tablero;	
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				if (posicion<3) 
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}
+				else 
+				{
+					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+				}
+				
+				
+				vista.turno = 1;	
 			}
 			vista.repaint();
 		}
 		else if ((e.getX()>= 245) && (e.getX()<= 279) && (e.getY() >= 140) && (e.getY()<=343)) 
 		{
 			int columna = 1;
+			int posicion = modelo.buscarPosicion(columna);
+			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
 			if (vista.turno == 1) 
 			{
+				
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
 				vista.tableroDatos = modelo.tablero;
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				if (posicion<3) 
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}
+				else 
+				{
+					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+				}
+				
+
 				vista.turno = 2;
 			}
 			else if (vista.turno == 2) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
 				vista.tableroDatos = modelo.tablero;
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				if (posicion<3) 
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}else 
+				{
+					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+				}
+				
+				
 				vista.turno = 1;
+
 			}
 			vista.repaint();
 		}
 		else if ((e.getX()>= 317) && (e.getX()<= 362) && (e.getY() >= 140) && (e.getY()<=343)) 
 		{
 			int columna = 2;
+			int posicion = modelo.buscarPosicion(columna);
+			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
 			if (vista.turno == 1) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
 				vista.tableroDatos = modelo.tablero;
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				if (posicion<3) 
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}
+				else 
+				{
+					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+				}
+				
+
 				vista.turno = 2;
 			}
 			else if (vista.turno == 2) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
 				vista.tableroDatos = modelo.tablero;
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				if (posicion<3) 
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}
+				else 
+				{
+					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+				}
+				
+				
 				vista.turno = 1;
 			}
 			vista.repaint();
@@ -134,16 +218,48 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		else if ((e.getX()>= 389) && (e.getX()<= 423) && (e.getY() >= 140) && (e.getY()<=343)) 
 		{
 			int columna = 3;
+			int posicion = modelo.buscarPosicion(columna);
+			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
 			if (vista.turno == 1) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
 				vista.tableroDatos = modelo.tablero;
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
+				if (posicion<3) 
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}
+				else 
+				{
+					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+				}
+
+				
 				vista.turno = 2;
 			}
 			else if (vista.turno == 2) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
 				vista.tableroDatos = modelo.tablero;
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Derecha: "+modelo.comprobacionHorizontalDerecha(columna, posicion,vista.turno));
+				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
+				if (posicion<3) 
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}
+				else 
+				{
+					System.out.println("Diagonal derecha Arriba: "+modelo.comprobacionDiagonalDerechaArriba(columna, posicion, vista.turno));
+					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+				}
+
+				
 				vista.turno = 1;
 			}
 			vista.repaint();
@@ -151,16 +267,44 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		else if ((e.getX()>= 461) && (e.getX()<= 495) && (e.getY() >= 140) && (e.getY()<=343)) 
 		{
 			int columna = 4;
+			int posicion = modelo.buscarPosicion(columna);
+			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
 			if (vista.turno == 1) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
 				vista.tableroDatos = modelo.tablero;
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
+				if (posicion<3)
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}
+				else 
+				{
+					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+				}
+
+
 				vista.turno = 2;
 			}
 			else if (vista.turno == 2) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
 				vista.tableroDatos = modelo.tablero;
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
+				if (posicion<3) 
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}
+				else 
+				{
+					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+				}
+
+
 				vista.turno = 1;
 			}
 			vista.repaint();
@@ -168,16 +312,44 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		else if ((e.getX()>= 533) && (e.getX()<= 567) && (e.getY() >= 140) && (e.getY()<=343)) 
 		{
 			int columna = 5;
+			int posicion = modelo.buscarPosicion(columna);
+			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
 			if (vista.turno == 1) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
 				vista.tableroDatos = modelo.tablero;
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
+				if (posicion<3)
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}
+				else 
+				{
+					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+				}
+
+
 				vista.turno = 2;
 			}
 			else if (vista.turno == 2) 
 			{
 				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
 				vista.tableroDatos = modelo.tablero;
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
+				if (posicion<3)
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}
+				else
+				{
+					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+				}
+
+
 				vista.turno = 1;
 			}
 			vista.repaint();
@@ -185,16 +357,43 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		else if ((e.getX()>= 605) && (e.getX()<= 639) && (e.getY() >= 140) && (e.getY()<=343)) 
 		{
 			int columna = 6;
+			int posicion = modelo.buscarPosicion(columna);
+			System.out.println("Columna: "+ columna + " Posicion: "+posicion);
 			if (vista.turno == 1) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 1);
+				modelo.llenarTablero(posicion,columna, 1);
 				vista.tableroDatos = modelo.tablero;
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
+				if (posicion<3) 
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}
+				else 
+				{
+					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+				}
+
+
 				vista.turno = 2;
 			}
 			else if (vista.turno == 2) 
 			{
-				modelo.llenarTablero(modelo.buscarPosicion(columna),columna, 2);
+				modelo.llenarTablero(posicion,columna, 2);
 				vista.tableroDatos = modelo.tablero;
+				
+				// =================== COMPROBACIONES =======================
+				System.out.println("Izquierda: "+modelo.comprobacionHorizontalIzquierda(columna, posicion,vista.turno));
+				if (posicion<3) 
+				{
+					System.out.println("Abajo: "+modelo.comprobacionAbajoVertical(columna, posicion,vista.turno));
+				}
+				else 
+				{
+					System.out.println("Diagonal Izquierda Arriba: "+ modelo.comprobacionDiagonalIzquierdaArriba(columna, posicion, vista.turno));
+				}
+
 				vista.turno = 1;
 			}
 			vista.repaint();

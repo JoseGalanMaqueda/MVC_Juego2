@@ -101,22 +101,23 @@ public class Tablero extends Frame
 				}
 				
 			}
-		}
-		
-		
-		/*
-		for (int i = 0; i < 7; i++)	
-		{	
-			for (int j = 0; j < 6; j++)
-			{
-				g.fillOval(x+(incrementoX*i), y+(incrementoY*j), 30, 30);
-			}
-		}*/
-		
+		}		
 
 
 		g.drawImage(bntSalir, 335, 385 ,this );
 
+	}
+	
+	public void mostrarPosiciones() 
+	{
+		for (int i = 0; i < 6; i++)	
+		{	
+			for (int j = 0; j < 7; j++)
+			{
+				System.out.print(tableroDatos[i][j]+"\t");
+			}
+			System.out.println("");
+		}
 	}
 
 	public void cargarBotonNegro() {
@@ -129,18 +130,6 @@ public class Tablero extends Frame
 		herramienta = getToolkit();
 		bntSalir = herramienta.getImage("img//Tablero//btnSalir2.png");
 		repaint();
-	}
-
-	public void mostrarPosiciones() 
-	{
-		for (int i = 0; i < 6; i++)	
-		{	
-			for (int j = 0; j < 7; j++)
-			{
-				System.out.print(tableroDatos[i][j]+"\t");
-			}
-			System.out.println("");
-		}
 	}
 
 

@@ -1,6 +1,5 @@
 package es.llyto.modelo;
 
-
 public class ModeloTablero 
 {
 
@@ -11,7 +10,7 @@ public class ModeloTablero
 	int fila = 0;
 	int jugador = 0;
 
-	
+
 	public void mostrarPosiciones() 
 	{
 		for (int i = 0; i < columnas; i++)	
@@ -23,12 +22,11 @@ public class ModeloTablero
 			System.out.println("");
 		}
 	}
-	
 
-	public int buscarPosicion(int fila) 
+
+	public int buscarPosicion(int vetical) 
 	{
-		this.fila = fila;
-		if (tablero[5][fila] == 0) 
+		if (tablero[5][vetical] == 0) 
 		{
 			iElegido = 5;
 		}
@@ -36,7 +34,7 @@ public class ModeloTablero
 		{
 			for (int i = 0; i < 6; i++)	
 			{	
-				for (int j = fila; j == fila; j++)
+				for (int j = vetical; j == vetical; j++)
 				{
 					if (tablero[i][j] == 0) 
 					{
@@ -49,11 +47,124 @@ public class ModeloTablero
 		return iElegido;
 
 	}
-	
-	public void llenarTablero(int posicion, int fila, int jugador) 
+
+	public void llenarTablero(int horizontal, int vertical, int jugador) 
 	{
-		tablero[iElegido][fila] = jugador;
+		tablero[horizontal][vertical] = jugador;
+	}
+
+	public boolean comprobacionHorizontalDerecha(int columna, int posicion, int turno) 
+	{
+		boolean aGanado = true;
+		for (int i = 0; i<4 ; i++) 
+		{
+			if (aGanado) 
+			{
+				if (tablero[posicion][columna+i] == turno) 
+				{
+					aGanado = true;
+				}
+				else 
+				{
+					aGanado = false;
+				}
+			}
+
+		}
+
+		return aGanado;
+	}
+
+
+	public boolean comprobacionHorizontalIzquierda(int columna, int posicion, int turno) 
+	{
+		boolean aGanado = true;
+		for (int i = 0; i<4 ; i++)  
+		{
+			if (aGanado) 
+			{
+				if (tablero[posicion][columna-i] == turno) 
+				{
+					aGanado = true;
+				}
+				else 
+				{
+					aGanado = false;
+				}
+			}
+
+		}
+
+		return aGanado;
+	}
+
+	public boolean comprobacionAbajoVertical(int columna, int posicion, int turno) 
+	{
+		boolean aGanado = true;
+		for (int i = 0; i<4 ; i++)  
+		{
+			if (aGanado) {
+				if (tablero[posicion+i][columna] == turno) 
+				{
+					aGanado = true;
+				}
+				else 
+				{
+					aGanado = false;
+				}
+			}
+			
+		}
+
+		return aGanado;
 	}
 	
+	public boolean comprobacionDiagonalDerechaArriba(int columna, int posicion, int turno) 
+	{
+		boolean aGanado = true;
+		for (int i = 0; i<4 ; i++)  
+		{
+			if (aGanado) {
+				if (tablero[posicion-i][columna+i] == turno) 
+				{
+					aGanado = true;
+				}
+				else 
+				{
+					aGanado = false;
+				}
+			}
+			
+		}
+
+		return aGanado;
+	}
+
 	
+	public boolean comprobacionDiagonalIzquierdaArriba(int columna, int posicion, int turno) 
+	{
+		boolean aGanado = true;
+		for (int i = 0; i<4 ; i++)  
+		{
+			if (aGanado) {
+				if (tablero[posicion-i][columna-i] == turno) 
+				{
+					aGanado = true;
+				}
+				else 
+				{
+					aGanado = false;
+				}
+			}
+			
+		}
+
+		return aGanado;
+	}
+
+
+
+
+
+
 }
