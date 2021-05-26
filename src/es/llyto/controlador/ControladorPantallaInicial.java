@@ -6,6 +6,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import es.llyto.modelo.modeloGanadores;
 import es.llyto.vista.*;
 
 public class ControladorPantallaInicial implements MouseListener, WindowListener, MouseMotionListener{
@@ -37,7 +38,9 @@ public class ControladorPantallaInicial implements MouseListener, WindowListener
 		}
 		else if ((e.getX()>= 227) && (e.getX()<= 392) && (e.getY() >= 140) && (e.getY()<=183)) 
 		{
-			System.out.println("Ranking");
+			vistaRanking vista = new vistaRanking();
+			modeloGanadores modelo = new modeloGanadores();
+			new ControladorRanking(vista, modelo);
 		}
 		else if ((e.getX()>= 227) && (e.getX()<= 392) && (e.getY() >= 192) && (e.getY()<=232)) 
 		{

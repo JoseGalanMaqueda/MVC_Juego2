@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import es.llyto.modelo.ModeloTablero;
+import es.llyto.modelo.modeloGanadores;
 import es.llyto.vista.*;
 
 public class ControladorPantallaJugadores implements WindowListener, MouseMotionListener, MouseListener
@@ -75,7 +76,8 @@ public class ControladorPantallaJugadores implements WindowListener, MouseMotion
 			{
 				Tablero vista = new Tablero(this.vista.txtNombreJugadorUno.getText(), this.vista.txtNombreJugadorDos.getText());
 				ModeloTablero modelo = new ModeloTablero();
-				new ControladorTablero(vista, modelo);
+				modeloGanadores modeloGanadores = new modeloGanadores();
+				new ControladorTablero(vista, modelo, modeloGanadores);
 				this.vista.setVisible(false);
 			}
 			

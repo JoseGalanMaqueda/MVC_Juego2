@@ -7,20 +7,25 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import es.llyto.modelo.ModeloTablero;
+import es.llyto.modelo.modeloGanadores;
 import es.llyto.vista.*;
 
 public class ControladorTablero implements WindowListener, MouseListener, MouseMotionListener
 {
 	Tablero vista;
 	ModeloTablero modelo;
+	modeloGanadores modeloGanadores;
 	boolean ganador = false;
 	int movimientosJugador1 = 0;
 	int movimientosJugador2 = 0;
+	String ganadorInsertar = "";
+	int movimientosInsertar = 0;
 
-	public ControladorTablero(Tablero vista, ModeloTablero modelo) 
+	public ControladorTablero(Tablero vista, ModeloTablero modelo, modeloGanadores modeloGanador) 
 	{
 		this.vista = vista;
 		this.modelo = modelo;
+		this.modeloGanadores = modeloGanador;
 
 		this.vista.addWindowListener(this);
 		this.vista.addMouseListener(this);
@@ -43,6 +48,7 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		}
 		else if (vista.dlgGanador.isActive()) 
 		{
+			this.modeloGanadores.insertarJugador(ganadorInsertar, movimientosInsertar);
 			vista.dlgGanador.setVisible(false);
 			vista.setVisible(false);
 		}
@@ -118,8 +124,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 
 				if ((comprobacionHorizontalDerecha == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador1;
+					movimientosInsertar = movimientosJugador1;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
+					
 				}
 
 				vista.turno = 2;
@@ -149,8 +158,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 
 				if ((comprobacionHorizontalDerecha == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador2;
+					movimientosInsertar = movimientosJugador2;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
+					
 				}
 
 
@@ -186,6 +198,8 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 
 				if ((comprobacionHorizontalDerecha == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador1;
+					movimientosInsertar = movimientosJugador1;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
 				}
@@ -217,8 +231,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 
 				if ((comprobacionHorizontalDerecha == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador2;
+					movimientosInsertar = movimientosJugador2;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
+					
 				}
 
 
@@ -254,8 +271,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 
 				if ((comprobacionHorizontalDerecha == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador1;
+					movimientosInsertar = movimientosJugador1;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
+					
 				}
 
 
@@ -285,8 +305,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 
 				if ((comprobacionHorizontalDerecha == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador2;
+					movimientosInsertar = movimientosJugador2;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
+					
 				}
 
 
@@ -331,8 +354,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 				if ((comprobacionHorizontalDerecha == true) || (comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) 
 						|| (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador1;
+					movimientosInsertar = movimientosJugador1;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
+					
 				}
 
 
@@ -371,8 +397,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 				if ((comprobacionHorizontalDerecha == true) || (comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) 
 						|| (comprobacionDiagonalDerechaAbajo == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalDerechaArriba == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador2;
+					movimientosInsertar = movimientosJugador2;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
+					
 				}
 
 				vista.turno = 1;
@@ -409,8 +438,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 				
 				if ((comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador1;
+					movimientosInsertar = movimientosJugador1;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
+					
 				}
 
 
@@ -442,8 +474,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 				
 				if ((comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador2;
+					movimientosInsertar = movimientosJugador2;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
+					
 				}
 
 
@@ -481,8 +516,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 				
 				if ((comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador1;
+					movimientosInsertar = movimientosJugador1;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
+					
 				}
 
 
@@ -514,8 +552,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 				
 				if ((comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador2;
+					movimientosInsertar = movimientosJugador2;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
+					
 				}
 
 
@@ -553,8 +594,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 				
 				if ((comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador1;
+					movimientosInsertar = movimientosJugador1;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
+					
 				}
 
 
@@ -586,8 +630,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 				
 				if ((comprobacionHorizontalIzquierda == true) || (comprobacionAbajoVertical == true) || (comprobacionDiagonalIzquierdaAbajo == true) || (comprobacionDiagonalIzquierdaArriba == true) ) 
 				{
+					ganadorInsertar = vista.jugador2;
+					movimientosInsertar = movimientosJugador2;
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
+					
 				}
 
 				vista.turno = 1;
