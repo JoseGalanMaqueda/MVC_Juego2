@@ -19,6 +19,7 @@ public class Tablero extends Frame
 	Font letraDos = new Font("Open Sans", Font.BOLD, 16);
 	Image fondo;
 	Image bntSalir;
+	Image fondoDialogo;
 	public Toolkit herramienta;
 	public String jugador1 = "";
 	public String jugador2 = "";
@@ -34,6 +35,7 @@ public class Tablero extends Frame
 	int filas = 6;
 	int columnas = 7;
 	public int[][] tableroDatos = new int[filas][columnas];
+	
 	
 	public Dialog dlgGanador = new Dialog(this, "Ganador", true );
 	public Label lblMensaje = new Label();
@@ -53,7 +55,8 @@ public class Tablero extends Frame
 	}
 
 	@Override
-	public void paint(Graphics g) {
+	public void paint(Graphics g) 
+	{
 		g.drawImage(fondo, 0, 23, this);
 
 		g.setFont(letra);
@@ -111,6 +114,8 @@ public class Tablero extends Frame
 
 
 		g.drawImage(bntSalir, 335, 385 ,this );
+		
+		g.drawImage(fondoDialogo, 0, 23, dlgGanador);
 
 	}
 	
@@ -140,13 +145,16 @@ public class Tablero extends Frame
 	
 	public void creacionDialogoGanador(String ganador, int movimientos) 
 	{
-		dlgGanador.setSize(300, 200);
+		herramienta = getToolkit();
+		fondoDialogo = herramienta.getImage("img//Fondos//fondoDialogo.png");
+		dlgGanador.setSize(350, 100);
 		dlgGanador.setLayout(new FlowLayout());
 		lblMensaje.setText("El Ganador es "+ganador+", ha tenido "+movimientos+" movimientos");
 		dlgGanador.add(lblMensaje);
 		dlgGanador.setLocationRelativeTo(null);
 		dlgGanador.setResizable(false);
 		dlgGanador.setVisible(true);
+		repaint();
 	}
 	
 
