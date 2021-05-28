@@ -29,10 +29,10 @@ public class modeloGanadores
 			rs = statement.executeQuery(sentencia);
 			consulta.selectAll();
 			consulta.setText("");
-			consulta.append("Puesto\tNombre\tMovimientos\n");
+			consulta.append("Puesto\tNombre\t\tMovimientos\n");
 			consulta.append("================================\n");
 			while (rs.next()) {
-				consulta.append(puesto+"."+"\t"+rs.getString("nombreGanador")+"\t"+rs.getInt("movimientosGanador")+"\n");
+				consulta.append(puesto+"."+"\t"+rs.getString("nombreGanador")+"\t\t"+rs.getInt("movimientosGanador")+"\n");
 				puesto++;
 			}
 		} catch (SQLException e) {
