@@ -21,6 +21,7 @@ public class modeloGanadores
 	{
 		bd= new BaseDatos();
 		connection = bd.conectar();
+		int puesto = 1;
 		try {
 			statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
@@ -28,10 +29,11 @@ public class modeloGanadores
 			rs = statement.executeQuery(sentencia);
 			consulta.selectAll();
 			consulta.setText("");
-			consulta.append("Id\tNombre\tMovimientos\n");
+			consulta.append("Puesto\tNombre\tMovimientos\n");
 			consulta.append("================================\n");
 			while (rs.next()) {
-				consulta.append(rs.getInt("idGanador")+"\t"+rs.getString("nombreGanador")+"\t"+rs.getInt("movimientosGanador")+"\n");
+				consulta.append(puesto+"."+"\t"+rs.getString("nombreGanador")+"\t"+rs.getInt("movimientosGanador")+"\n");
+				puesto++;
 			}
 		} catch (SQLException e) {
 			consulta.selectAll();
