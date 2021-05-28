@@ -25,7 +25,6 @@ public class Tablero extends Frame
 	public String jugador2 = "";
 	Color tablero = new Color(0,0,200);
 	Color tablero2 = new Color(0,0,160);
-	public String hora = "12:00";
 	public int turno = 1;
 	int x = 175;
 	int y = 140;
@@ -36,9 +35,11 @@ public class Tablero extends Frame
 	int columnas = 7;
 	public int[][] tableroDatos = new int[filas][columnas];
 	
-	
 	public Dialog dlgGanador = new Dialog(this, "Ganador", true );
 	public Label lblMensaje = new Label();
+	
+	public Dialog dlgEmpate = new Dialog(this, "Empate", true );
+	public Label lblEmpate = new Label();
 
 
 	public Tablero(String jugador1,String jugador2) 
@@ -64,7 +65,6 @@ public class Tablero extends Frame
 		g.drawString(jugador2, 565, 90);
 
 		g.setFont(letraDos);
-		g.drawString(hora, 380, 70);
 
 		if (turno == 1) 
 		{
@@ -155,6 +155,17 @@ public class Tablero extends Frame
 		dlgGanador.setResizable(false);
 		dlgGanador.setVisible(true);
 		repaint();
+	}
+	
+	public void creacionDialogoEmpate() 
+	{
+		dlgEmpate.setSize(350, 100);
+		dlgEmpate.setLayout(new FlowLayout());
+		lblEmpate.setText("La partida ha quedado Empate");
+		dlgEmpate.add(lblEmpate);
+		dlgEmpate.setLocationRelativeTo(null);
+		dlgEmpate.setResizable(false);
+		dlgEmpate.setVisible(true);
 	}
 	
 

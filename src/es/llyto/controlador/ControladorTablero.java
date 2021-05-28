@@ -32,6 +32,8 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		this.vista.addMouseMotionListener(this);
 		
 		this.vista.dlgGanador.addWindowListener(this);
+		
+		this.vista.dlgEmpate.addWindowListener(this);
 	}
 
 
@@ -50,6 +52,11 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 		{
 			this.modeloGanadores.insertarJugador(ganadorInsertar, movimientosInsertar);
 			vista.dlgGanador.setVisible(false);
+			vista.setVisible(false);
+		}
+		else if (vista.dlgEmpate.isActive()) 
+		{
+			vista.dlgEmpate.setVisible(false);
 			vista.setVisible(false);
 		}
 	}
@@ -90,12 +97,13 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 	@Override
 	public void mouseClicked(MouseEvent e) 
 	{
+		
 		if ((e.getX()>= 337) && (e.getX()<= 464) && (e.getY() >= 387) && (e.getY()<=418)) 
 		{
 			vista.setVisible(false);
 		}
 		else if ((e.getX()>= 173) && (e.getX()<= 210) && (e.getY() >= 140) && (e.getY()<=343)) 
-		{
+		{	
 			int columna = 0;
 			int posicion = modelo.buscarPosicion(columna);
 
@@ -130,6 +138,10 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
 					
 				}
+				else if (movimientosJugador1 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
+				}
 
 				vista.turno = 2;
 
@@ -163,6 +175,10 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
 					
+				}
+				else if (movimientosJugador2 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
 				}
 
 
@@ -203,6 +219,10 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
 				}
+				else if (movimientosJugador1 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
+				}
 
 
 				vista.turno = 2;
@@ -236,6 +256,10 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
 					
+				}
+				else if (movimientosJugador2 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
 				}
 
 
@@ -277,6 +301,10 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
 					
 				}
+				else if (movimientosJugador1 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
+				}
 
 
 				vista.turno = 2;
@@ -310,6 +338,10 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
 					
+				}
+				else if (movimientosJugador2 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
 				}
 
 
@@ -360,6 +392,10 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
 					
 				}
+				else if (movimientosJugador1 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
+				}
 
 
 				vista.turno = 2;
@@ -403,6 +439,10 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
 					
 				}
+				else if (movimientosJugador2 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
+				}
 
 				vista.turno = 1;
 			}
@@ -444,6 +484,10 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
 					
 				}
+				else if (movimientosJugador1 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
+				}
 
 
 				vista.turno = 2;
@@ -479,6 +523,10 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
 					
+				}
+				else if (movimientosJugador2 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
 				}
 
 
@@ -522,6 +570,10 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
 					
 				}
+				else if (movimientosJugador1 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
+				}
 
 
 				vista.turno = 2;
@@ -557,6 +609,10 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.repaint();
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
 					
+				}
+				else if (movimientosJugador2 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
 				}
 
 
@@ -600,6 +656,10 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.creacionDialogoGanador(vista.jugador1, movimientosJugador1);
 					
 				}
+				else if (movimientosJugador1 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
+				}
 
 
 				vista.turno = 2;
@@ -636,11 +696,16 @@ public class ControladorTablero implements WindowListener, MouseListener, MouseM
 					vista.creacionDialogoGanador(vista.jugador2, movimientosJugador2);
 					
 				}
+				else if (movimientosJugador2 >= 21) 
+				{
+					vista.creacionDialogoEmpate();
+				}
 
 				vista.turno = 1;
 			}
 			vista.repaint();
 		}
+		
 	}
 
 	@Override
