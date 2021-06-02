@@ -97,14 +97,18 @@ public class Tablero extends Frame
 		{	
 			for (int j = 0; j < filas; j++)
 			{
-				if (tableroDatos[j][i]==0) {
+				if (tableroDatos[j][i]==0) 
+				{
 					g.setColor(tablero2);
 					g.fillOval(x+(incrementoX*i), y+(incrementoY*j), 30, 30);
-				}else if (tableroDatos[j][i]==1) {
+				}
+				else if (tableroDatos[j][i]==1) 
+				{
 					g.setColor(Color.yellow);
 					g.fillOval(x+(incrementoX*i), y+(incrementoY*j), 30, 30);
 				}
-				else if (tableroDatos[j][i]==2) {
+				else if (tableroDatos[j][i]==2) 
+				{
 					g.setColor(Color.red);
 					g.fillOval(x+(incrementoX*i), y+(incrementoY*j), 30, 30);
 				}
@@ -117,13 +121,15 @@ public class Tablero extends Frame
 
 	}
 
-	public void cargarBotonNegro() {
+	public void cargarBotonNegro() 
+	{
 		herramienta = getToolkit();
 		bntSalir = herramienta.getImage("img//Tablero//btnSalir2_Negro.png");
 		repaint();
 	}
 
-	public void cargarBotonNormal() {
+	public void cargarBotonNormal() 
+	{
 		herramienta = getToolkit();
 		bntSalir = herramienta.getImage("img//Tablero//btnSalir2.png");
 		repaint();
