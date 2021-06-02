@@ -6,6 +6,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import es.llyto.modelo.Ayuda;
 import es.llyto.modelo.modeloGanadores;
 import es.llyto.vista.*;
 
@@ -44,7 +45,7 @@ public class ControladorPantallaInicial implements MouseListener, WindowListener
 		}
 		else if ((e.getX()>= 227) && (e.getX()<= 392) && (e.getY() >= 192) && (e.getY()<=232)) 
 		{
-			System.out.println("Ayuda");
+			Ayuda.ejecutarAyuda();
 		}
 		else if ((e.getX()>= 227) && (e.getX()<= 392) && (e.getY() >= 243) && (e.getY()<=282)) 
 		{
