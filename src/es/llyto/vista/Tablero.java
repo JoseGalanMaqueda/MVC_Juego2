@@ -114,8 +114,6 @@ public class Tablero extends Frame
 
 
 		g.drawImage(bntSalir, 335, 385 ,this );
-		
-		g.drawImage(fondoDialogo, 0, 23, dlgGanador);
 
 	}
 
