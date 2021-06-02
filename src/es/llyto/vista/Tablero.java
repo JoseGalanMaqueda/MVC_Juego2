@@ -145,8 +145,6 @@ public class Tablero extends Frame
 	
 	public void creacionDialogoGanador(String ganador, int movimientos) 
 	{
-		herramienta = getToolkit();
-		fondoDialogo = herramienta.getImage("img//Fondos//fondoDialogo.png");
 		dlgGanador.setSize(350, 100);
 		dlgGanador.setLayout(new FlowLayout());
 		lblMensaje.setText("El Ganador es "+ganador+", ha tenido "+movimientos+" movimientos");
@@ -154,7 +152,6 @@ public class Tablero extends Frame
 		dlgGanador.setLocationRelativeTo(null);
 		dlgGanador.setResizable(false);
 		dlgGanador.setVisible(true);
-		repaint();
 	}
 	
 	public void creacionDialogoEmpate() 
