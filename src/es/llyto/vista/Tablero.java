@@ -118,18 +118,6 @@ public class Tablero extends Frame
 		g.drawImage(fondoDialogo, 0, 23, dlgGanador);
 
 	}
-	
-	public void mostrarPosiciones() 
-	{
-		for (int i = 0; i < 6; i++)	
-		{	
-			for (int j = 0; j < 7; j++)
-			{
-				System.out.print(tableroDatos[i][j]+"\t");
-			}
-			System.out.println("");
-		}
-	}
 
 	public void cargarBotonNegro() {
 		herramienta = getToolkit();
