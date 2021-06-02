@@ -19,7 +19,8 @@ public class PantallaInicial extends Frame {
 
 
 	// ================================== CONSTRUCTOR ===================================================
-	public PantallaInicial() {
+	public PantallaInicial() 
+	{
 		setSize(620, 348);
 		setTitle("Cuatro en Raya");
 		herramienta = getToolkit();
@@ -43,7 +44,8 @@ public class PantallaInicial extends Frame {
 	// ================================= PAINT ==========================================================
 
 	@Override
-	public void paint(Graphics g) {
+	public void paint(Graphics g) 
+	{
 		g.drawImage(fondo, 4, 23,this);
 		g.drawImage(btnNuevaPartida, 225, 90,this); // Mitad 225 y altura mitad 151
 		g.drawImage(btnRanking, 225, 140,this); // Se suman de 50 en 50
@@ -81,7 +83,8 @@ public class PantallaInicial extends Frame {
 		}
 	}
 	
-	public void cargarBotonesNormales() {
+	public void cargarBotonesNormales() 
+	{
 		
 		btnNuevaPartida = herramienta.getImage("img//PantallaPrincipal//btnNuevaPartida2.png"); 
 		btnRanking = herramienta.getImage("img//PantallaPrincipal//btnRanking2.png");

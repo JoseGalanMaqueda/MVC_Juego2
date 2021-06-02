@@ -57,7 +57,8 @@ public class PantallaJugadores extends Frame
 		g.drawImage(botonAceptar, 230, 180, this);
 	}
 	
-	public void creacionDialogoNotificacion(Dialog dialogo, Label lbl) {
+	public void creacionDialogoNotificacion(Dialog dialogo, Label lbl) 
+	{
 		dialogo.setSize(230, 100);
 		dialogo.setLayout(new FlowLayout());
 		dialogo.add(lbl);

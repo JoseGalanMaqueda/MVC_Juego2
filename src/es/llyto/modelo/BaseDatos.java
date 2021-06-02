@@ -16,7 +16,8 @@ public class BaseDatos
 	Statement statement = null;
 	ResultSet rs = null;
 
-	public BaseDatos() {
+	public BaseDatos() 
+	{
 
 	}
 
@@ -26,10 +27,12 @@ public class BaseDatos
 		{
 			Class.forName(driver);
 			connection = DriverManager.getConnection(url, login, password);
-		} catch (ClassNotFoundException cnfe)
+		}
+		catch (ClassNotFoundException cnfe)
 		{
 			System.out.println("Error 1-" + cnfe.getMessage());
-		} catch (SQLException sqle)
+		}
+		catch (SQLException sqle)
 		{
 			System.out.println("Error 2-" + sqle.getMessage());
 		}
@@ -38,9 +41,12 @@ public class BaseDatos
 
 	public void desconectar(Connection con) 
 	{
-		try {
+		try 
+		{
 			con.close();
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) 
+		{
 			System.out.println("Error 3-"+e.getMessage());
 		}
 	}

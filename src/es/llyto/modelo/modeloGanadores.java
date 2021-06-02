@@ -22,7 +22,8 @@ public class modeloGanadores
 		bd= new BaseDatos();
 		connection = bd.conectar();
 		int puesto = 1;
-		try {
+		try 
+		{
 			statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
 			sentencia = "select * from ganadores order by movimientosGanador asc limit 10;";
@@ -31,15 +32,20 @@ public class modeloGanadores
 			consulta.setText("");
 			consulta.append("Puesto\tNombre\t\tMovimientos\n");
 			consulta.append("================================\n");
-			while (rs.next()) {
+			while (rs.next())
+			{
 				consulta.append(puesto+"."+"\t"+rs.getString("nombreGanador")+"\t\t"+rs.getInt("movimientosGanador")+"\n");
 				puesto++;
 			}
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) 
+		{
 			consulta.selectAll();
 			consulta.setText("");
 			consulta.append("Error al cargar los datos");	
-		}finally {
+		}
+		finally 
+		{
 			bd.desconectar(connection);
 		}
 	}

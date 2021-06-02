@@ -31,7 +31,8 @@ public class vistaRanking extends Frame
 	}
 
 	@Override
-	public void paint(Graphics g) {
+	public void paint(Graphics g)
+	{
 		g.drawImage(fondo, 0, 23, this);
 		g.drawImage(botonCancelar,290,340,this);
 	}

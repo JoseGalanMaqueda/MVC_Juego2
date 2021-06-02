@@ -10,12 +10,14 @@ import es.llyto.modelo.Ayuda;
 import es.llyto.modelo.modeloGanadores;
 import es.llyto.vista.*;
 
-public class ControladorPantallaInicial implements MouseListener, WindowListener, MouseMotionListener{
+public class ControladorPantallaInicial implements MouseListener, WindowListener, MouseMotionListener
+{
 
 	PantallaInicial vista;
 	
 	// ====================================== CONSTRUCTOR ==================================================
-	public ControladorPantallaInicial(PantallaInicial vista) {
+	public ControladorPantallaInicial(PantallaInicial vista) 
+	{
 		
 		this.vista = vista;
 		
